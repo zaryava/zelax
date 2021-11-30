@@ -1,0 +1,30 @@
+{% extends 'ubajax/base.html' %}
+{% block content %}
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="tb text-center">
+      <th colspan="4"><h5><span style="color: blue">История</span><strong><span style="color: red"> ОД </span></strong><span>(Ошибок Доступа к airFiber AF-11FX)</span></h5></th>
+    </tr>
+    <tr class="tb text-center">
+      <th colspan="4"><h5>Имя РРС: <strong style="color:#1419a6f6">{{ dataname.nameubnt }}</strong> --- IP-адрес РРС: <strong style="color: #c93a3af6">{{ dataname.ipubntone }}</strong> --- Название РРЛ: <strong style="color:#348c72f6">{{ dataname.nameubntline }}</strong></h5></th>
+    </tr>
+    <tr class="tb text-center">
+      <th scope="col"><h5><strong>Время записи</strong></h5></th>
+      <th scope="col"><h5><strong>Наименование ошибки</strong></h5></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dat in data %}
+    <tr>
+      <td scope="row">дата {{ dat.timewrite|date:'d.m.Y' }} --- время <strong>{{ dat.timewrite|time:'H:i:s' }}</strong> </td>
+      {% if dat.mistake_ip == 'Ошибок нет' %}
+        <td><strong style="color:#2c912af6">{{ dat.mistake_ip }}</strong></td>
+      {% else %}
+        <td><strong style="color: red">{{ dat.mistake_ip }}</strong></td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+ {% endblock %}

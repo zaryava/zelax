@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <title>UBNT</title>
+</head>
+<body style="background-color: #08080800">
+    <nav class="navbar navbar-expand-lg navbar-light mb-1 pt-1 pb-1 fixed-top" style="background-color: #E7EDED">
+        <a class="navbar-brand" href="{% url 'vazar_light_url' %}">
+    <img src="{% static 'img/zvw.svg' %}" width="30" height="30" alt="">
+            <strong style="color:#1419a6f6"><em>Контроллер РРЛ</em></strong>
+  </a>
+        <!--<a class="navbar-brand">Контроллер РРЛ</a>!-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+          <a class="nav-link" href="{% url 'rrl_list_url' %}"><span style="color:green"><strong>На Главную</strong></span><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="/admin" target="_blank"><span style="color:orange"><strong>Администрирование</strong></span><span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    {% verbatim %}
+    <div class="rrl mt-2" id="navapp">
+        <h5><span :class="nav.flagcolor_rrls"><span class="wordr ml-2">РРЛ:</span><strong class="word ml-2 mr-2"><span style="color:yellow">{{ nav.name_rrl_danger }}</span>{{ nav.flagsos_rrls }}</strong></span></h5>
+
+    </div>
+      {% endverbatim %}
+
+  </div>
+</nav>
+<br>
+<br>
+{% block content %}
+{% endblock %}
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'vue/vue.js' %}"></script>
+<script src="{% static 'axios/dist/axios.min.js' %}"></script>
+<script src="{% static 'appvue/appvue.js' %}"></script>
+
+
+
+</body>
+</html>

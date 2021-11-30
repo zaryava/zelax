@@ -1,0 +1,97 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <title>UBNT</title>
+</head>
+<!--<body style="background-color: #949E9E">!-->
+<body style="background-color: #08080800">
+<nav class="navbar navbar-expand-lg navbar-light mb-1 pt-1 pb-1 fixed-top" style="background-color: #E7EDED">
+
+        <a class="navbar-brand" href="{% url 'vazar_light_url' %}">
+    <img src="{% static 'img/zvw.svg' %}" width="30" height="30" alt="">
+    <strong style="color:#1419a6f6"><em>Контроллер РРЛ</em></strong>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+          <a class="nav-link" href="{% url 'rrl_list_url' %}"><span style="color:green"><strong>На Главную</strong></span><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="/admin" target="_blank"><span style="color:orange"><strong>Администрирование</strong></span><span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    {% verbatim %}
+    <div class="rrl mt-2" id="navapp">
+        <h5><span :class="nav.flagcolor_rrls"><span class="wordr ml-2">РРЛ:</span><strong class="word ml-2 mr-2"><span style="color:yellow">{{ nav.name_rrl_danger }}</span>{{ nav.flagsos_rrls }}</strong></span></h5>
+    </div>
+      {% endverbatim %}
+
+  </div>
+</nav>
+<br>
+<br>
+
+{% verbatim %}
+<div id="appu">
+    <div class="vueubnt" v-for="(du, index) in dus">
+        <div class="card border-primary mx-3 mt-3 pb-2 mb-2" style="background-color: #E7EDED">
+            <div class="card-header text-white bg-secondary pt-2 pb-1 text-center"><h6>РРЛ: <strong style="color: yellow">{{ du.nameubntline }}</strong> <strong class="word ml-2 mr-2" style="color: orange">{{ du.numberubntline }}</strong><span :class="du.flagcolor_rrl"><strong class="word ml-2 mr-2">{{ du.flagsos_rrl }}</strong></span> <em class="word ml-5 mr-2"> Последнее обновление данных было в <span style="color: orange">{{ du.timewritet }}</span> <span style="color: black">({{ du.timewrited }})</span></em></h6></div>
+                <div class="row mt-3 mx-2">
+                    <div class="col-sm-6">
+                        <div class="card mb-2">
+                            <div class="card-body pt-1 pb-2">
+				    <h6 class="card-title text-center">Имя РРС: <span style="color:blue"><strong>{{ du.nameubnt }}</strong></span> --- IP адрес: <span style="color:blue" id="ipone"><strong><a :href="du.lipcros" target="_blank">{{ index }}</a></strong></span></h6>                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item pb-1 pt-1"><h6>Уровень приёма  ---> <span v-html="du.prml0"></span>/<span v-html="du.prml1"></span> dBm <span :class="du.flagcolor_rrsl"><strong class="word ml-2 mr-2">{{ du.flagsos_rrsl }}</strong></span></h6></li>
+                        
+                                        <li class="list-group-item pb-1 pt-1"><h6>Ёмкость приёма  ---> <span style="color:blue"><strong>{{ du.udspeedl }}</strong></span> Mbps</h6></li>
+                                        <li class="list-group-item pb-1 pt-1 text-center">
+                                            <a :href="du.lip" class="btn btn-outline-primary pt-1 pb-1 mt-2">Подробно</a>
+                                            <a :href="du.lipstatl" class="btn btn-outline-info pt-1 pb-1 mt-2">История за 16 ч. табл</a>
+					    <a :href="du.liphisl" class="btn btn-outline-info pt-1 pb-1 mt-2">История за 1 ч. граф</a>
+                                            <a :href="du.misl" class="btn btn-outline-secondary pt-1 pb-1 mt-2">ИОД</a>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card mb-2">
+                            <div class="card-body pt-1 pb-2">
+				    <h6 class="card-title text-center">Имя РРС: <span style="color:blue"><strong>{{ du.nameubntremote }}</strong></span> --- IP адрес: <span style="color:blue" id="iptwo"><strong><a :href="du.ripcros" target="_blank">{{ du.ipubnttworem }}</a></strong></span></h6>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item pb-1 pt-1"><h6>Уровень приёма ---> <span v-html="du.prmr0"></span>/<span v-html="du.prmr1"></span> dBm <span :class="du.flagcolor_rrsr"><strong class="word ml-2 mr-2">{{ du.flagsos_rrsr }}</strong></span></h6></li>
+                                       
+                                        <li class="list-group-item pb-1 pt-1"><h6>Ёмкость приёма ---> <span style="color:blue"><strong>{{ du.udspeedr }}</strong></span> Mbps</h6></li>
+                                        <li class="list-group-item pb-1 pt-1 text-center">
+                                            <a :href="du.rip" class="btn btn-outline-primary pt-1 pb-1 mt-2">Подробно</a>
+                                            <a :href="du.ripstatr" class="btn btn-outline-info pt-1 pb-1 mt-2">История за 16 ч. табл</a>
+					    <a :href="du.riphisr" class="btn btn-outline-info pt-1 pb-1 mt-2">История за 1 ч. граф</a>
+                                            <a :href="du.misr" class="btn btn-outline-secondary pt-1 pb-1 mt-2">ИОД</a>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endverbatim %}
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'vue/vue.js' %}"></script>
+<script src="{% static 'axios/dist/axios.min.js' %}"></script>
+<script src="{% static 'appvue/appvue.js' %}"></script>
+
+
+</body>
+</html>

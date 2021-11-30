@@ -1,0 +1,37 @@
+{% extends 'ubajax/base.html' %}
+{% block content %}
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="tb text-center">
+      <th colspan="3"><h5><span style="color: blue">История за </span><strong style="color:#b88b1af6">{{ period }}</strong><span style="color: blue"> {{ tm }}</span></h5></th>
+    </tr>
+    <tr class="tb text-center">
+      <th colspan="5"><h5>Имя РРС: <strong style="color:#1419a6f6">{{ dataname.nameubnt }}</strong> --- IP-адрес РРС: <strong style="color: #c93a3af6">{{ dataname.ipubntone }}</strong> --- Название РРЛ: <strong style="color:#348c72f6">{{ dataname.nameubntline }}</strong></h5></th>
+    </tr>
+    <tr class="tb text-center">
+      <th scope="col"><h5><strong>Время записи</strong></h5></th>
+      <th scope="col"><h5><strong>Уровень приёма в dBm</strong></h5></th>
+      <th scope="col"><h5><strong>Ёмкость приёма</strong></h5></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dat in data %}
+    <tr>
+      <td scope="row">дата {{ dat.timewrite|date:'d.m.Y' }} --- время <strong>{{ dat.timewrite|time:'H:i:s' }}</strong> </td>
+      {% if dat.udprml0 <= prmlevel or dat.udprml0 == 0 %}
+        <td><strong style="color:red">
+      {% else %}
+        <td><strong style="color:#2c912af6">
+      {% endif %}
+      {% if dat.udprml1 <= prmlevel  or dat.udprml1 == 0 %}
+        {{ dat.udprml0 }}</strong>/<strong style="color:red">{{ dat.udprml1 }}</strong> dBm</td>
+      {% else %}
+        {{ dat.udprml0 }}</strong>/<strong style="color:#2c912af6">{{ dat.udprml1 }}</strong> dBm</td>
+      {% endif %}
+      <td><strong style="color:blue">{{ dat.udspeedl }}</strong> Mbps</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+ {% endblock %}

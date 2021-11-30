@@ -1,0 +1,32 @@
+{% extends 'ubajax/base.html' %}
+{% load static %}
+
+{% block title %}
+    Vazar_light - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="coll-sm-3">
+</div>
+    <div class="coll-sm-6">
+<div class="card mt-5 mb-5 border-warning">
+  <img src="{% static 'img/zarya.jpg' %}" class="card-img-top" alt="foto_zarya">
+  <div class="card-body">
+      <p class="card-text"><strong style="color: blue">My skills:</strong><strong><em style="color: green"> Python 3, Django, HTML, CSS, PostgreSQL, Bootsrap, Arduino, Raspberry Pi, VoIP, Радиорелейная связь, Радиосвязь и т.д.</em></strong></p>
+      <p class="card-text"><strong style="color: red"><em>Если данные не обновляются более чем 3 минуты нажмите</em> RESTART</strong></p>
+      <a href="{% url 'restartreq_url' %}" class="btn btn-outline-danger pt-1 pb-1 mt-2">RESTART</a>
+</div>
+</div>
+    </div>
+      <div class="coll-sm-3">
+</div>
+  </div>
+  </div>
+
+
+
+{% endblock %}
+

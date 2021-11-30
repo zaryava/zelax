@@ -1,0 +1,40 @@
+﻿{% extends 'ubajax/base.html' %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+    <div class="card border-primary mx-3 mt-3 pb-3" style="background-color: #E7EDED">
+        <div class="card-header text-white bg-secondary pt-1 pb-1 text-center"><h6>РРЛ: <strong style="color: yellow">{{ data_detail.nameubntline }}</strong><span class="badge badge-{{ ddets.flagcolors }} ml-5">{{ ddets.flagsoss }}</span></h6></div>
+                    <div class="card">
+                        <div class="card-body pt-1 pb-2">
+                            <h6 class="card-title text-center">Имя РРС: <strong><span style="color:blue">{{ data_detail.nameubnt }}</span></strong> --- IP адрес: <strong><span style="color:blue">{{ data_detail.ipubntone }}</span></strong></h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item pb-1 pt-1"><h6>Имя линии --->        <span style="color:blue"><strong>{{ data_detail.ulinkname }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Имя устройства --->   <span style="color:blue"><strong>{{ data_detail.urrsname_local }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Длина линии --->      <span style="color:blue"><strong>{{ data_detail.udistance }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Частота приёма --->   <span style="color:blue"><strong>{{ data_detail.ufprm_local }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Частота передачи ---> <span style="color:blue"><strong>{{ data_detail.ufprd_local }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Ширина полосы --->           <span style="color:blue"><strong>{{ data_detail.uwidth }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Модуляция --->        <span style="color:blue"><strong>{{ data_detail.umod }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><h6>Ведущий(ведомый) ---> <span style="color:blue"><strong>{{ data_detail.umasterslave_local }}</strong></span></h6></li>
+                                    <li class="list-group-item pb-1 pt-1"><a href="http://{{ data_detail.ipubntone }}" target="_blank">Переход на {{ data_detail.ipubntone }}</a></li>
+                                    <li class="list-group-item pb-1 pt-1 text-center"><h5><strong style="color:grey"><em>История РРС</em></strong></h5></li>
+                                    <li class="list-group-item pb-1 pt-1 text-center">
+                                        <a href="/statl/{{ data_detail.ipubntone }}_24" class="btn btn-info text-white pt-1 pb-1 mt-2">За 24 часа</a>
+                                        <a href="/statl/{{ data_detail.ipubntone }}_48" class="btn btn-success text-white pt-1 pb-1 mt-2">За 48 часов</a>
+                                        <a href="/statl/{{ data_detail.ipubntone }}_72" class="btn btn-warning text-white pt-1 pb-1 mt-2">За 72 часа</a>
+                                        <a href="/statl/{{ data_detail.ipubntone }}_96" class="btn btn-primary text-white pt-1 pb-1 mt-2">За 96 часов</a>
+                                    </li>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-sm-2">
+    </div>
+    </div>
+</div>
+{% endblock %}
